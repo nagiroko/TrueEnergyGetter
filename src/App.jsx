@@ -8,7 +8,7 @@ export default function App() {
   const onSubmit = async data => {
     console.log(data);
     
-const { data, error } = await supabase
+const { Data, error } = await supabase
 .from('Emails')
 .insert([
   { Emails: 'Youdidit@gmail.com'},
