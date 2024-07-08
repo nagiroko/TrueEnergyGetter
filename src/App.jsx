@@ -14,7 +14,12 @@ const { Data = data, error } = await supabase
   { Emails: Email},
 ])
 .select()
-        
+if (error) {
+  console.error('Error inserting data:', error);
+} else {
+  console.log('Data inserted successfully:', data);
+  setResponse(data);
+}
   };
 
   return (
