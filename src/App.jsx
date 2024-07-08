@@ -1,11 +1,20 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import supabase from "./supabaseClient";
 
 export default function App() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   
-  const onSubmit = data => {
+  const onSubmit = async data => {
     console.log(data);
+    
+const { data, error } = await supabase
+.from('Emails')
+.insert([
+  { Emails: 'Youdidit@gmail.com'},
+])
+.select()
+        
   };
 
   return (
