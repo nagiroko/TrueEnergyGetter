@@ -11,7 +11,7 @@ export default function App() {
 const { Data = data, error } = await supabase
 .from('Emails')
 .insert([
-  { Emails: Email},
+  { Emails: email},
 ])
 .select()
 if (error) {
