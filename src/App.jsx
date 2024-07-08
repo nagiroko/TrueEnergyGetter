@@ -8,10 +8,10 @@ export default function App() {
   const onSubmit = async data => {
     console.log(data);
     
-const { Data, error } = await supabase
+const { Data = data, error } = await supabase
 .from('Emails')
 .insert([
-  { Emails: 'Youdidit@gmail.com'},
+  { Emails: Email},
 ])
 .select()
         
