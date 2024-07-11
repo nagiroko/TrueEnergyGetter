@@ -11,6 +11,7 @@ export default function App() {
   const [sleepValue, setSleepValue] = useState(6);
   const [amountValue, setAmountValue] = useState(10);
   const [emailList, setEmailList] = useState([]);
+  const [emailsLoaded, setEmailsLoaded] = useState(false);
 
   useEffect(() => {
     const fetchEmails = async () => {
@@ -20,6 +21,7 @@ export default function App() {
       } else {
         setEmailList(data.map(item => item.Email));
       }
+      setEmailsLoaded(true);
     };
 
     fetchEmails();
@@ -29,6 +31,13 @@ export default function App() {
     setLoading(true);
     setErrorMessage("");
     setResponse(null);
+
+    // Ensure emails are loaded before checking
+    if (!emailsLoaded) {
+      setLoading(false);
+      setErrorMessage("Emails are still loading, please try again.");
+      return;
+    }
 
     // Check if the email already exists
     if (emailList.includes(formData.email)) {
@@ -77,7 +86,7 @@ export default function App() {
         />
         {errors.email && <p>{errors.email.message}</p>}
         {errorMessage && <p>{errorMessage}</p>}
-        <label>Primary Source of Caffine</label>
+        <label>Primary Source of Caffeine</label>
         <div>
 
           <label>
